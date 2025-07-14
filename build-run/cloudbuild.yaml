@@ -2,16 +2,16 @@ steps:
 # BUild the container image
 # docker build -t imagename .
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/ancient-tractor-462500-u5/docker-repo/new-python:v1', 'build-run/.']
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/emerald-spring-465406-s1/docker-repo/new-python:v1', '.']
 # Push the container image to Artifact Registry
 # docker push us-central1-docker.pkg.dev/ancient-tractor-462500-u5/docker-repo/new-python:v1
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1-docker.pkg.dev/ancient-tractor-462500-u5/docker-repo/new-python:v1']  
+  args: ['push', 'us-central1-docker.pkg.dev/emerald-spring-465406-s1/docker-repo/new-python:v1']
 # Deploy the container image to Cloud Run
 # gcloud run deploy new-python --image us-central1-docker.pkg.dev/ancient-tractor-462500-u5/docker-repo/new-python:v1 --region us-central1 --allow-unauthenticated
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['run', 'deploy', 'new-python',
-         '--image', 'us-central1-docker.pkg.dev/ancient-tractor-462500-u5/docker-repo/new-python:v1',
+         '--image', 'us-central1-docker.pkg.dev/emerald-spring-465406-s1/docker-repo/new-python:v1',
          '--region', 'us-central1',
          '--allow-unauthenticated']
 options:
