@@ -13,7 +13,7 @@ pipeline {
         }
         stage("deployToprod") {
             options {
-                timeout (time: 300, units: 'SECONDS')
+                timeout (time: 300, unit: 'SECONDS')
             }
             input {
                 message 'are you directly deploying into production'
