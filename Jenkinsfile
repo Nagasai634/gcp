@@ -1,46 +1,41 @@
+
 pipeline {
-    agent {
-        label 'jenkins-slave'
-    }
+    agent any
     stages {
         stage('build') {
-             options {
-                timeout (time: 300, unit: 'SECONDS')
-            }
-            input {
-                message 'building'
-                ok 'yes'
-                submitter 'sai,venkat,nagasai'
-            }
-            steps{
-                echo "building new code"
+            steps {
+                echo "building the code"
             }
         }
-        stage('scanning') {
-             options {
-                timeout (time: 300, unit: 'SECONDS')
-            }
-            input {
-                message 'scanning'
-                ok 'yes'
-                submitter 'sai,venkat,nagasai'
-            }
-            steps{
-                echo "scanning the code"
+        stage('codequality') {
+            steps {
+                 echo "checking the code quality"
             }
         }
-        stage("deployToprod") {
+        stage('Dockerbuildnpush') {
+            steps {
+                echo "building the docker"    
+            }
+        }
+        stage('k8s') {
+            steps {
+                echo "deploying the image into k8s"
+            }
+        }
+        stage("deploytoproduction") {
             options {
-                timeout (time: 300, unit: 'SECONDS')
+                timeout(time: 300, unit: 'SECONDS')
             }
             input {
-                message 'are you directly deploying into production'
+                message  "doing deploying in production??????"
                 ok 'yes'
-                submitter 'sai,venkat,nagasai'
+                submitter 'Nagasaivardhan,devsai'
             }
             steps {
-                echo "deploying the code into production"
+                echo "deploy the production"
             }
+           
         }
+        
     }
 }
